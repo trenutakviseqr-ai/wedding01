@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ivana & Petar - Naše vjenčanje</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+text-align:center;
+color:#5a4636;
+overflow-x:hidden;
+
+background:linear-gradient(-45deg,#fdf8f3,#f6ede3,#f9f3ea,#f6efe6);
+background-size:400% 400%;
+animation:bgMove 20s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* WELCOME */
+
+#welcome{
+
+position:fixed;
+width:100%;
+height:100%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+background:linear-gradient(to bottom,#fffdfb,#f3e8da);
+
+z-index:9999;
+padding:30px;
+
+}
+
+.rings{
+font-size:70px;
+margin-bottom:20px;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+100%{transform:translateY(0)}
+
+}
+
+#welcome h1{
+font-family:Playfair Display;
+font-size:52px;
+margin-bottom:5px;
+}
+
+.date{
+font-size:18px;
+opacity:0.8;
+margin-bottom:25px;
+}
+
+#welcome p{
+max-width:550px;
+line-height:1.7em;
+opacity:0.8;
+}
+
+.enterBtn{
+
+margin-top:35px;
+
+padding:16px 45px;
+
+border:none;
+border-radius:40px;
+
+font-size:18px;
+
+background:linear-gradient(45deg,#c6a46c,#e8c88a);
+
+color:white;
+
+cursor:pointer;
+
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
+
+transition:0.3s;
+
+}
+
+.enterBtn:hover{
+transform:scale(1.08);
+}
+
+/* HERO */
+
+.hero{
+padding:120px 20px 70px;
+}
+
+.hero h1{
+font-family:Playfair Display;
+font-size:50px;
+}
+
+.hero p{
+font-size:18px;
+opacity:0.85;
+}
+
+/* CARD */
+
+.card{
+
+max-width:950px;
+margin:auto;
+
+background:rgba(255,255,255,0.75);
+backdrop-filter:blur(12px);
+
+padding:45px;
+
+border-radius:22px;
+
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+
+}
+
+/* GALLERY */
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:18px;
+
+margin-top:35px;
+
+}
+
+.gallery img{
+
+width:100%;
+border-radius:12px;
+
+cursor:pointer;
+
+transition:0.4s;
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.06);
+
+box-shadow:0 0 25px rgba(201,170,99,0.8);
+
+}
+
+/* UPLOAD */
+
+.uploadBtn{
+
+margin-top:45px;
+
+padding:15px 35px;
+
+border:none;
+
+border-radius:35px;
+
+background:linear-gradient(45deg,#c6a46c,#e8c88a);
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+/* LIGHTBOX */
+
+#lightbox{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.85);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:999;
+
+}
+
+#lightbox img{
+
+max-width:90%;
+max-height:90%;
+
+border-radius:10px;
+
+}
+
+/* PARTICLES */
+
+.particle{
+
+position:fixed;
+
+width:4px;
+height:4px;
+
+background:gold;
+
+border-radius:50%;
+
+opacity:0.7;
+
+animation:floatUp linear infinite;
+
+}
+
+@keyframes floatUp{
+
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="paulyudin-wedding-485932.mp3" type="audio/mpeg">
+</audio>
+
+<div id="welcome">
+
+<div class="rings">💍</div>
+
+<h1>Ivana & Petar</h1>
+
+<div class="date">20. srpnja 2026</div>
+
+<p>
+Dobrodošli na naš poseban dan.
+Hvala vam što ste dio trenutka koji ćemo pamtiti cijeli život.
+</p>
+
+<p>
+Vaša prisutnost, osmijesi i ljubav čine ovaj dan još ljepšim.
+</p>
+
+<button class="enterBtn" onclick="startExperience()">
+Uđite na naše vjenčanje
+</button>
+
+</div>
+
+<div class="hero">
+
+<h1>Naše vjenčanje 💍</h1>
+
+<p>
+Hvala što ste dio našeg najljepšeg dana.
+</p>
+
+</div>
+
+<div class="card">
+
+<p id="typing"></p>
+
+<div class="gallery" id="gallery">
+
+<img src="photos/01.jpg">
+<img src="photos/02.jpg">
+<img src="photos/03.jpg">
+<img src="photos/04.jpg">
+<img src="photos/05.jpg">
+<img src="photos/06.jpg">
+<img src="photos/07.jpg">
+<img src="photos/08.jpg">
+<img src="photos/09.jpg">
+<img src="photos/10.jpg">
+
+</div>
+
+<button class="uploadBtn" onclick="addPhotos()">
+Dodaj svoje slike s vjenčanja 📷
+</button>
+
+<input type="file" id="fileInput" multiple accept="image/*" style="display:none">
+
+</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
+
+<script>
+
+/* START EXPERIENCE */
+
+function startExperience(){
+
+document.getElementById("welcome").style.display="none";
+
+document.getElementById("music").play();
+
+createParticles();
+
+typing();
+
+}
+
+/* TYPING TEXT */
+
+const message="Dragi naši gosti, od srca vam hvala što ste danas dio našeg vjenčanja. Vaša prisutnost, osmijesi i ljubav učinili su ovaj dan još posebnijim. Nadamo se da će vam ove uspomene uvijek izmamiti osmijeh.";
+
+let i=0;
+
+function typing(){
+
+if(i<message.length){
+
+document.getElementById("typing").innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(typing,40);
+
+}
+
+}
+
+/* PARTICLES */
+
+function createParticles(){
+
+for(let i=0;i<40;i++){
+
+let p=document.createElement("div");
+
+p.className="particle";
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.animationDuration=(6+Math.random()*10)+"s";
+
+document.body.appendChild(p);
+
+}
+
+}
+
+/* UPLOAD PHOTOS */
+
+function addPhotos(){
+
+document.getElementById("fileInput").click();
+
+}
+
+document.getElementById("fileInput").addEventListener("change",function(e){
+
+let gallery=document.getElementById("gallery");
+
+for(let file of e.target.files){
+
+let img=document.createElement("img");
+
+img.src=URL.createObjectURL(file);
+
+gallery.appendChild(img);
+
+img.onclick=function(){
+openLightbox(img.src);
+}
+
+}
+
+});
+
+/* LIGHTBOX */
+
+function openLightbox(src){
+
+document.getElementById("lightbox").style.display="flex";
+
+document.getElementById("lightbox-img").src=src;
+
+}
+
+function closeLightbox(){
+
+document.getElementById("lightbox").style.display="none";
+
+}
+
+/* enable lightbox on existing images */
+
+document.querySelectorAll(".gallery img").forEach(img=>{
+
+img.onclick=function(){
+
+openLightbox(this.src)
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
