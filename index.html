@@ -17,7 +17,6 @@ font-family:Poppins;
 text-align:center;
 color:#5a4636;
 overflow-x:hidden;
-
 background:linear-gradient(-45deg,#fdf8f3,#f6ede3,#f9f3ea,#f6efe6);
 background-size:400% 400%;
 animation:bgMove 20s ease infinite;
@@ -32,21 +31,16 @@ animation:bgMove 20s ease infinite;
 /* WELCOME */
 
 #welcome{
-
 position:fixed;
 width:100%;
 height:100%;
-
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-
 background:linear-gradient(to bottom,#fffdfb,#f3e8da);
-
 z-index:9999;
 padding:30px;
-
 }
 
 .rings{
@@ -56,11 +50,9 @@ animation:float 3s ease-in-out infinite;
 }
 
 @keyframes float{
-
 0%{transform:translateY(0)}
 50%{transform:translateY(-12px)}
 100%{transform:translateY(0)}
-
 }
 
 #welcome h1{
@@ -82,26 +74,16 @@ opacity:0.8;
 }
 
 .enterBtn{
-
 margin-top:35px;
-
 padding:16px 45px;
-
 border:none;
 border-radius:40px;
-
 font-size:18px;
-
 background:linear-gradient(45deg,#c6a46c,#e8c88a);
-
 color:white;
-
 cursor:pointer;
-
 box-shadow:0 15px 35px rgba(0,0,0,0.25);
-
 transition:0.3s;
-
 }
 
 .enterBtn:hover{
@@ -127,136 +109,88 @@ opacity:0.85;
 /* CARD */
 
 .card{
-
 max-width:950px;
 margin:auto;
-
 background:rgba(255,255,255,0.75);
 backdrop-filter:blur(12px);
-
 padding:45px;
-
 border-radius:22px;
-
 box-shadow:0 25px 60px rgba(0,0,0,0.25);
-
 }
 
 /* GALLERY */
 
 .gallery{
-
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
 gap:18px;
-
 margin-top:35px;
-
 }
 
 .gallery img{
-
 width:100%;
 border-radius:12px;
-
 cursor:pointer;
-
 transition:0.4s;
-
 }
 
 .gallery img:hover{
-
 transform:scale(1.06);
-
 box-shadow:0 0 25px rgba(201,170,99,0.8);
-
 }
 
 /* UPLOAD */
 
 .uploadBtn{
-
 margin-top:45px;
-
 padding:15px 35px;
-
 border:none;
-
 border-radius:35px;
-
 background:linear-gradient(45deg,#c6a46c,#e8c88a);
-
 color:white;
-
 font-size:16px;
-
 cursor:pointer;
-
 }
 
 /* LIGHTBOX */
 
 #lightbox{
-
 position:fixed;
-
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 background:rgba(0,0,0,0.85);
-
 display:none;
-
 justify-content:center;
 align-items:center;
-
 z-index:999;
-
 }
 
 #lightbox img{
-
 max-width:90%;
 max-height:90%;
-
 border-radius:10px;
-
 }
 
 /* PARTICLES */
 
 .particle{
-
 position:fixed;
-
 width:4px;
 height:4px;
-
 background:gold;
-
 border-radius:50%;
-
 opacity:0.7;
-
 animation:floatUp linear infinite;
-
 }
 
 @keyframes floatUp{
-
 from{transform:translateY(100vh);}
 to{transform:translateY(-10vh);}
-
 }
 
 </style>
-
 </head>
 
 <body>
@@ -331,36 +265,30 @@ Dodaj svoje slike s vjenčanja 📷
 
 <script>
 
-/* START EXPERIENCE */
+/* START */
 
 function startExperience(){
 
 document.getElementById("welcome").style.display="none";
-
 document.getElementById("music").play();
 
 createParticles();
-
 typing();
 
 }
 
-/* TYPING TEXT */
+/* TYPING */
 
-const message="Dragi naši gosti, od srca vam hvala što ste danas dio našeg vjenčanja. Vaša prisutnost, osmijesi i ljubav učinili su ovaj dan još posebnijim. Nadamo se da će vam ove uspomene uvijek izmamiti osmijeh.";
+const message="Dragi naši gosti, od srca vam hvala što ste danas dio našeg vjenčanja. Vaša prisutnost, osmijesi i ljubav učinili su ovaj dan još posebnijim.";
 
 let i=0;
 
 function typing(){
 
 if(i<message.length){
-
 document.getElementById("typing").innerHTML+=message.charAt(i);
-
 i++;
-
 setTimeout(typing,40);
-
 }
 
 }
@@ -372,11 +300,8 @@ function createParticles(){
 for(let i=0;i<40;i++){
 
 let p=document.createElement("div");
-
 p.className="particle";
-
 p.style.left=Math.random()*100+"vw";
-
 p.style.animationDuration=(6+Math.random()*10)+"s";
 
 document.body.appendChild(p);
@@ -385,19 +310,17 @@ document.body.appendChild(p);
 
 }
 
-/* UPLOAD PHOTOS */
+/* UPLOAD */
 
 function addPhotos(){
-
 document.getElementById("fileInput").click();
-
 }
 
 document.getElementById("fileInput").addEventListener("change",function(e){
 
 let gallery=document.getElementById("gallery");
 
-let storedImages=JSON.parse(localStorage.getItem("weddingPhotos") || "[]");
+let storedImages=JSON.parse(localStorage.getItem("weddingPhotos")||"[]");
 
 for(let file of e.target.files){
 
@@ -419,7 +342,7 @@ img.onclick=function(){
 openLightbox(img.src);
 }
 
-};
+}
 
 reader.readAsDataURL(file);
 
@@ -427,12 +350,35 @@ reader.readAsDataURL(file);
 
 });
 
+/* LOAD STORED IMAGES */
+
+window.onload=function(){
+
+let storedImages=JSON.parse(localStorage.getItem("weddingPhotos")||"[]");
+
+let gallery=document.getElementById("gallery");
+
+storedImages.forEach(src=>{
+
+let img=document.createElement("img");
+
+img.src=src;
+
+gallery.appendChild(img);
+
+img.onclick=function(){
+openLightbox(src);
+}
+
+});
+
+}
+
 /* LIGHTBOX */
 
 function openLightbox(src){
 
 document.getElementById("lightbox").style.display="flex";
-
 document.getElementById("lightbox-img").src=src;
 
 }
@@ -443,14 +389,12 @@ document.getElementById("lightbox").style.display="none";
 
 }
 
-/* enable lightbox on existing images */
+/* enable lightbox */
 
 document.querySelectorAll(".gallery img").forEach(img=>{
 
 img.onclick=function(){
-
 openLightbox(this.src)
-
 }
 
 })
