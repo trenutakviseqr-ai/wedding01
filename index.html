@@ -397,17 +397,31 @@ document.getElementById("fileInput").addEventListener("change",function(e){
 
 let gallery=document.getElementById("gallery");
 
+let storedImages=JSON.parse(localStorage.getItem("weddingPhotos") || "[]");
+
 for(let file of e.target.files){
+
+let reader=new FileReader();
+
+reader.onload=function(event){
 
 let img=document.createElement("img");
 
-img.src=URL.createObjectURL(file);
+img.src=event.target.result;
 
 gallery.appendChild(img);
+
+storedImages.push(event.target.result);
+
+localStorage.setItem("weddingPhotos",JSON.stringify(storedImages));
 
 img.onclick=function(){
 openLightbox(img.src);
 }
+
+};
+
+reader.readAsDataURL(file);
 
 }
 
